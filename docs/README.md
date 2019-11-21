@@ -1,6 +1,6 @@
 # Data Process
 ## Architecture of data process
-## Data process software installtion
+## Data process software installation
 ### Kakfa
 ### Hadoop
 安裝Java環境:
@@ -16,6 +16,23 @@ sudo tar -zxvf ./jdk-8u162-linux-x64.tar.gz -C /usr/lib/jvm
 cd ~
 vim ~/.bashrc
 ```
+4. 寫入Java環境
+```
+export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_162
+export JRE_HOME=${JAVA_HOME}/jre
+export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib
+export PATH=${JAVA_HOME}/bin:$PATH
+```
+5. 使環境變量生效
+```
+source ~/.bashrc
+```
+6. 檢查Java是否安裝成功
+```
+java -version
+```
+
+
 
 ### Spark
 ### Cassandra
