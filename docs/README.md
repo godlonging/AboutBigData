@@ -3,9 +3,9 @@
 ## Data process software installation
 ### Kakfa
 ### Hadoop
-安裝Java環境:
+**安裝Java環境:**
 1. 到官網下載Java-JDK
-2. 解壓到`/usr/local/jvm`目錄
+2. 解壓到`/usr/lib/jvm`目錄
 ```shell
 cd /usr/lib
 sudo mkdir jvm
@@ -31,6 +31,7 @@ source ~/.bashrc
 ```
 java -version
 ```
+**安裝Hadoop:**
 
 
 
