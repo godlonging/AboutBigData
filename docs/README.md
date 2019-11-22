@@ -44,10 +44,43 @@ cd /usr/local/hadoop
 ./bin/hadoop version
 ```
 **至此單機版Hadoop已經安裝完畢。**
-
-
-
 ### Spark
+1. 下載Spark,解壓到`/usr/local/`並修改文件權限
+```shell script
+sudo tar -zxf ./spark-2.1.0-bin-without-hadoop.tgz -C /usr/local/
+cd /usr/local
+sudo mv ./spark-2.1.0-bin-without-hadoop/ ./spark
+sudo chown -R root:root ./spark
+```
+2. 修改spark配置文件spark-env.sh
+```shell script
+cd /usr/local/spark
+sudo cp ./conf/spark-env.sh.template ./conf/spark-env.sh
+```
+添加一下配置：
+```
+export SPARK_DIST_CLASSPATH=$(/usr/local/hadoop/bin/hadoop classpath)
+```
+3. 修改環境變量
+```sudo vim ~/.bashrc```
+添加以下配置：
+```
+export JAVA_HOME=/usr/lib/jvm/default-java
+export HADOOP_HOME=/usr/local/hadoop
+export SPARK_HOME=/usr/local/spark
+export PYTHONPATH=$SPARK_HOME/python:$SPARK_HOME/python/lib/py4j-0.10.4-src.zip:$PYTHONPATH
+export PYSPARK_PYTHON=python3
+export PATH=$HADOOP_HOME/bin:$SPARK_HOME/bin:$PATH
+```
+生效配置文件
+```shell script
+source ~/.bashrc
+```
+4. 檢查spark是否安裝成功
+```shell script
+cd /usr/local/spark
+bin/run-example SparkPi
+```
 ### Cassandra
 ### MySQL
 ### Grafana
