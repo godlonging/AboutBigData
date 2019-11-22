@@ -1,7 +1,38 @@
 # Data Process
 ## Architecture of data process
 ## Data process software installation
-### Kakfa
+### Kafka
+1. 到官網下載kafka
+2. 解壓到`/usr/local`目錄並添加權限
+```shell script
+sudo tar -zxf kafka_2.11-0.10.1.0.tgz -C /usr/local
+cd /usr/local
+sudo mv kafka_2.11-0.10.1.0/ ./kafka
+sudo chown -R root ./kafka
+```
+3. 簡單測試Kafka
+    1. 開啟zookeeper服務
+    ```shell script
+    cd /usr/local/kafka
+    bin/zookeeper-server-start.sh config/zookeeper.properties
+    ```
+    2. 開啟kafka服務
+    ```shell script
+    cd /usr/local/kafka
+    bin/kafka-server-start.sh config/server.properties
+    ```
+    3. 建立kafka-topic名為test
+    ```shell script
+    bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test
+    ```
+    4. 使用kafka-producer發送消息
+    ```shell script
+    bin/kafka-console-producer.sh --broker-list localhost:9092 --topic test
+    ```
+   5. 使用kafka-consumer接受消息
+   ```shell script
+    bin/kafka-console-consumer.sh ----bootstrap-server localhost:9092 --topic test --from-beginning
+    ```
 ### Hadoop
 **安裝Java環境:**
 1. 到官網下載Java-JDK
@@ -38,11 +69,12 @@ sudo tar -zxf ./hadoop-3.1.2.tar.gz -C /usr/local/
 sudo mv /usr/local/hadoop-3.1.2 /usr/local/hadoop
 sudo chown -R root /usr/local/hadoop
 ```
-2. 檢查Hadoop是否安裝成功
+2. 檢查Hadoop是否安裝成功  
 ```shell script
 cd /usr/local/hadoop
 ./bin/hadoop version
-```
+```  
+  
 **至此單機版Hadoop已經安裝完畢。**
 ### Spark
 1. 下載Spark,解壓到`/usr/local/`並修改文件權限
@@ -82,5 +114,6 @@ cd /usr/local/spark
 bin/run-example SparkPi
 ```
 ### Cassandra
+
 ### MySQL
 ### Grafana
