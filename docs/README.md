@@ -114,6 +114,29 @@ cd /usr/local/spark
 bin/run-example SparkPi
 ```
 ### Cassandra
-
+1.下載Cassandra安裝包並解壓
+```shell script
+tar -zxvf apache-cassandra-2.1.2-bin.tar.gz -C /usr/local/
+sudo mv ./apache-cassandra-2.1.2 ./cassandra
+```
+2. 創建默認設置目錄並賦予權限
+```shell script
+sudo mkdir "/var/lib/cassandra"
+sudo mkdir "/var/log/cassandra"
+sudo chmod 777 /var/lib/cassandra
+sudo chmod 777 /var/log/cassandra
+```
+3. 修改環境變量
+```sudo vim ~/.bashrc```
+添加以下配置：
+```
+export CASSANDRA_HOME = /usr/local/cassandra
+export PATH = $PATH:$CASSANDRA_HOME/bin
+```
+4. 啟動Cassandra服務
+```shell script
+cd /usr/local/cassandra
+./bin/cassandra -f
+```
 ### MySQL
 ### Grafana
