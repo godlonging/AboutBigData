@@ -139,4 +139,29 @@ cd /usr/local/cassandra
 ./bin/cassandra -f
 ```
 ### MySQL
+1. 更新軟件源並安裝mysql
+```shell script
+sudo apt-get update
+sudo apt-get install mysql-server
+```
+2. 配置mysql
+```shell script
+sudo mysql_secure_installation
+```
+3.檢查mysql服務狀態
+```shell script
+systemctl status mysql.service
+```
 ### Grafana
+1. 下載Grafana安裝包並安裝
+```shell script
+wget https://dl.grafana.com/oss/release/grafana_6.5.0_amd64.deb
+sudo dpkg -i grafana_6.5.0_amd64.deb
+```
+2. 啟動Grafana服務
+```shell script
+service grafana-server start
+```
+3. 使用瀏覽器進入127.0.0.1:3000默認用戶名和密碼均為admin.
+
+
